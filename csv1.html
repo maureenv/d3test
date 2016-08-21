@@ -35,25 +35,25 @@
     .text(ds.category + "Sales (2013)");
   }
 
-  function showTotals(){
-    var t = d3.select("body").append("table");
-
-    // get total
-    for(var i=0; i<ds.length; i++){
-      salesTotal += ds[i]['sales'];
-    }
-
-    salesAvg = salesTotal/ds.length;
-    metrics.push("Saltes Total: " + salesTotal);
-    metrics.push("Sales Avg: " + salesAvg.tofixed(2))
-
-    var tr = t.selectAll("tr")
-            .data(metrics)
-            .enter()
-            .append("tr")
-            .append("td")
-            .text(function(d){ return d;});
-  }
+  // function showTotals(){
+  //   var t = d3.select("body").append("table");
+  //
+  //   // get total
+  //   for(var i=0; i<ds.length; i++){
+  //     salesTotal += ds[i]['sales'];
+  //   }
+  //
+  //   salesAvg = salesTotal/ds.length;
+  //   metrics.push("Saltes Total: " + salesTotal);
+  //   metrics.push("Sales Avg: " + salesAvg.tofixed(2))
+  //
+  //   var tr = t.selectAll("tr")
+  //           .data(metrics)
+  //           .enter()
+  //           .append("tr")
+  //           .append("td")
+  //           .text(function(d){ return d;});
+  // }
 
 
   d3.json("MonthlySalesbyCategory.json", function(error, data){
@@ -64,7 +64,6 @@
       ds = data;
     }
     buildLine();
-    showTotals();
     showHeader();
   });
 

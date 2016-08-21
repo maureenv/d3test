@@ -8,6 +8,8 @@
   var w=400;
   var ds; //global var fod dataset
   var salesTotal = 0.0;
+  var salesAvg=0.0;
+  var metrics=[];
 
   function buildLine(){
     var lineFun = d3.svg.line()
@@ -36,12 +38,16 @@
       salesTotal += ds[i]['sales'];
     }
 
+    salesAvg = salesTotal/ds.length;
+    metrics.push("Saltes Total: " + salesTotal);
+    metrics.push("Sales Avg: " + salesAvg.tofixed(2))
+
     var tr = t.selectAll("tr")
-            .data([i])
+            .data(metrics)
             .enter()
             .append("tr")
             .append("td")
-            .text("Sales Total: " + salesTotal);
+            .text(function(d){ return d;});
   }
 
 

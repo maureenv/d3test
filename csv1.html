@@ -30,6 +30,11 @@
     })
   }
 
+  function showHeader(){
+    d3.select("body").append("h1")
+    .text(ds.category + "Sales (2013)");
+  }
+
   function showTotals(){
     var t = d3.select("body").append("table");
 
@@ -51,7 +56,7 @@
   }
 
 
-  d3.json("MonthlySales.json", function(error, data){
+  d3.json("MonthlySalesbyCategory.json", function(error, data){
     if(error){
       console.log(error)
     } else {
@@ -60,6 +65,7 @@
     }
     buildLine();
     showTotals();
+    showHeader();
   });
 
 

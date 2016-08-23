@@ -1,1 +1,81 @@
-<h1> Hello </h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="d3.min.js" charset="utf-8"></script>
+  <!-- when loading this to the page, it comes with the object d3 which comes with functions I can invoke (like csv or json) -->
+</head>
+<body>
+<style>
+.circle {
+  fill: yellow;
+}
+
+.text {
+  stroke: red;
+  stroke-width: 3px;
+  font-size: 5em;
+  fill: black;
+}
+</style>
+<script>
+var myNumber = 5;
+var myString = "5";
+var parse = +myString; // adding + in front of string converts it into number
+console.log(myNumber + parse);
+
+</script>
+
+
+
+<svg width="250" height="250">
+  <rect x="0" y="0" width="50" height="200" fill="gray"/>
+  <rect x="50" y="200" height="50" width="200" fill="gray"/>
+
+  <g transform="translate(50,0)">
+    <circle cx="0" cy="0" r="10"/>
+    <circle class="circle" cx="100" cy="100" r="10"/>
+    <circle cx="130" cy="120" r="10"/>
+    <circle cx="50" cy="70" r="10"/>
+  </g><!-- g moves an entire thing over -->
+</svg>
+
+
+<svg width="250" height="250">
+  <!-- the rect will only become as large as the svg size -->
+  <rect x="50" y="50" width="200" height="100" fill="red"></rect>
+  <rect x="40" y="80" width="200" height="100" fill="rgba(0,255,0,0.5)"></rect>
+  <!-- fill can also be none -->
+
+  <circle cx="100" cy="100" r="50"></circle>
+
+  <line xl="50" yl="50" x2="200" y2="150" stroke="blue" stroke-width="20"></line>
+
+  <path d="M50 50 L100 150 L150 150 L200 50Z" fill="#456789" stroke="white" stroke-width="10" x="200"></path>
+
+  <text class="text" y="50"> Hello </text>
+</svg>
+
+<script>
+// d3.csv("data.csv", function(myArrayOfObjects){
+//   // whatever goes in the above function is a result of paring data in csv file. So myArrayOfObjects is like a collection of all the data
+//   myArrayOfObjects.forEach(function (d){
+//     console.log(d.x + d.y);
+//     // right now d3 is treating the csv file data as a string. We need to change this using example below
+//   })
+// });
+
+d3.csv("data.csv", type, function(myArrayOfObjects){
+  myArrayOfObjects.forEach(function (d){
+    console.log(d.x + d.y);
+  })
+})
+
+function type(d){
+  d.x = parseFloat(d.x);
+  d.y = parseFlat(d.y);
+  return d;
+}
+
+</script>
+</body>
+</html>
